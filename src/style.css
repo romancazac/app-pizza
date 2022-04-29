@@ -303,7 +303,11 @@ body {
   transition: all 0.4s;
   padding: 14px 10px;
 }
-.row-category__list li:hover {
+.row-category__list li._active {
+  color: #FE5F1E;
+  background: rgba(254, 95, 30, 0.05);
+}
+.row-category__list :hover {
   color: #FE5F1E;
   background: rgba(254, 95, 30, 0.05);
 }
@@ -352,6 +356,7 @@ body {
   border: 1px solid #EB5A1E;
   box-sizing: border-box;
   border-radius: 30px;
+  max-width: 160px;
   height: 40px;
   display: inline-flex;
   align-items: center;
@@ -394,7 +399,7 @@ body {
   flex-wrap: wrap;
   margin: 0 0 17px 0;
 }
-.lables__btn {
+.lables__btn, button {
   flex: 1 0 auto;
   border-radius: 5px;
   padding: 5px 20px;
@@ -403,9 +408,13 @@ body {
   margin: 0 0 7px 0;
   transition: all 0.2s;
 }
-.lables__btn._active {
+ button._active {
   background: #FFFFFF;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.04);
+}
+ button.disable {
+  opacity: 0.2;
+  pointer-events: none;
 }
 .lables__btn:hover {
   background-color: #FE5F1E;
