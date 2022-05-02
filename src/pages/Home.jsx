@@ -1,11 +1,32 @@
-import React from 'react'
+import React, {useEffect,useState} from 'react'
 import ContentLoader, { Facebook } from 'react-content-loader'
+
+
 
 import Sort from '../components/products/Sort'
 import Category from '../components/products/Category'
 import { Product } from '../components/products/Product'
-function Home({itemCat,onCart,onCat,onSort,activeItem,openSort,product,isLoading}) {
-   console.log(product)
+import { useSelector, useDispatch } from 'react-redux'
+import { fetchPizzas } from '../redux/actions/pizzas'
+import setSortBy from '../redux/actions/filters'
+
+function Home({ itemCat, onCat, onSort, activeItem, openSort}) {
+   const [isLoading, setIsLoading] = useState(true)
+  
+  
+   const dispatch = useDispatch();
+   const { items } = useSelector(({ pizzas }) => pizzas);
+
+
+
+
+
+
+   useEffect(() => {
+      dispatch(fetchPizzas())
+      setIsLoading(false)
+   }, []);
+
    return (
       <section className="products">
          <div className="products__container">
@@ -22,11 +43,10 @@ function Home({itemCat,onCart,onCat,onSort,activeItem,openSort,product,isLoading
                <div className="product__row">
                   {
                      isLoading ? <ContentLoader />
-                     :
-                     product.map((p) =>
-                        <Product key={p.id} {...p} generic={p.generic} onCart={onCart}/>
-                     
-                     
+                        :
+                        items.map((p) =>
+                           <Product key={p.id} {...p} generic={p.generic} />
+
                         )
                   }
                </div>

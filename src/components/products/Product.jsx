@@ -19,6 +19,7 @@ export const Product = ({ name, price, onCart, imageUrl, sizes, types }) => {
    const onActiveSize = (index) => {
       setActiveSize(index)
    }
+   
 
    return (
       <div className="product__column">
