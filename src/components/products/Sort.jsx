@@ -4,7 +4,7 @@ export default function Sort({ onSort, items }) {
 
    const [sortItem, setSortItem] = useState(0)
    const [activeSortItem, setActiveItem] = useState()
-   let titleSort = items[sortItem]
+   let titleSort = items[sortItem].name;
    const onSortItem = (index) => {
       setSortItem(index)
       setActiveItem(!activeSortItem)
@@ -18,8 +18,8 @@ export default function Sort({ onSort, items }) {
          <ul className="row-category__list">
             {
                items.map((item, index) =>
-                  <li className={sortItem === index ? 'row-category__btn _active' : 'row-category__btn'} onClick={() => onSortItem(index)} key={`${item}_${item.index}`}>
-                     <button>{item}</button>
+                  <li className={sortItem === index ? 'row-category__btn _active' : 'row-category__btn'} onClick={() => onSortItem(index)} key={`${item}_${item.type}`}>
+                     <button>{item.name}</button>
                   </li>
                )
             }

@@ -1,10 +1,16 @@
 import axios from "axios"
 
+const setLoading = (payload) => ({
 
- const fetchPizzas = () =>  (dispatch)  => {
+  type:'SET_LOADING',
+  payload,
+})
+ const fetchPizzas = (category) =>  (dispatch)  => {
    try {
+
       async function feachData() {
-        const productResponse = await axios.get('https://625406a519bc53e234775c39.mockapi.io/products-pizza')
+        
+        const productResponse = await axios.get(`http://localhost:3001/pizzas?category=${category}`)
         
         dispatch(setPizzas(productResponse.data))
       }
@@ -21,6 +27,7 @@ import axios from "axios"
 });
 
 export {
+  setLoading,
 fetchPizzas,
 setPizzas
 }

@@ -1,5 +1,9 @@
-const setSortBy = (name) => ({
+export const setSortBy = (name) => ({
    type:'SET_SORT_BY',
-   paylong:name,
+   payload:name,
 });
-export default setSortBy
+
+export const setCategory = (catIndex) => ({
+   type:'SET_CATEGORY',
+   payload:catIndex,
+});
