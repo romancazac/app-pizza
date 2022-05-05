@@ -1,5 +1,5 @@
 const initialStore = {
-   category:0,
+   category:null,
    sortBy:'popular' ,
 };
 

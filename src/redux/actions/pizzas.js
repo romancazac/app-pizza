@@ -10,7 +10,7 @@ const setLoading = (payload) => ({
 
       async function feachData() {
         
-        const productResponse = await axios.get(`http://localhost:3001/pizzas?category=${category}`)
+        const productResponse = await axios.get(`http://localhost:3001/pizzas?${category !== null ? `category=${category}` :''}`)
         
         dispatch(setPizzas(productResponse.data))
       }

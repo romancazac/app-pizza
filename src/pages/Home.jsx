@@ -10,7 +10,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { fetchPizzas} from '../redux/actions/pizzas'
 import { setLoading } from '../redux/actions/pizzas'
 import {setCategory,setSortBy } from '../redux/actions/filters'
-
+import {setCart} from '../redux/actions/cart'
 function Home({ itemCat, onCat, onSort, activeItem, openSort}) {
    // const [isLoading, setIsLoading] = useState(true)
   
@@ -19,10 +19,11 @@ function Home({ itemCat, onCat, onSort, activeItem, openSort}) {
    const { items } = useSelector(({ pizzas }) => pizzas);
    const isLoading = useSelector (({ pizzas })=> pizzas.isLoading)
    const  {category, sortBy}  = useSelector(({ filters }) => filters);
-   console.log(category)
+   const productCart = useSelector(({ cart }) => cart.productCart)
    
-
-
+   
+   dispatch(setCart([{'name':'test'},{'name':'tests'}]))
+   
    const onSelectCategory = React.useCallback((index) => {
       onCat(index)
       dispatch (setCategory(index));
@@ -35,11 +36,13 @@ function Home({ itemCat, onCat, onSort, activeItem, openSort}) {
    useEffect(() => {
       dispatch(setLoading(false))
       dispatch(fetchPizzas(category))
-      // setIsLoading(false)
+      
    }, [onCat, category]);
 
-
-
+   console.log(productCart)
+   const onCart = (obj) => {
+      console.log(obj)
+   }
    return (
       <section className="products">
          <div className="products__container">
@@ -56,13 +59,13 @@ function Home({ itemCat, onCat, onSort, activeItem, openSort}) {
                />
             </div>
             <div className="products__product product">
-               <h1 className="product__title">Все пиццы</h1>
+               <h1 className="product__title">Все пиццы {productCart}</h1>
                <div className="product__row">
                   {
                      isLoading ? 
                  
                         items.map((p) =>
-                           <Product key={p.id} {...p} generic={p.generic} />
+                           <Product key={p.id} {...p} generic={p.generic} onCart={onCart}/>
 
                         )
                         :
