@@ -444,6 +444,7 @@ body {
   font-size: 16px;
   line-height: 19px;
   color: #B6B6B6;
+  flex: 0 1 auto;
 }
 .cart__row {
   display: flex;
@@ -476,6 +477,7 @@ body {
   color: #EB5A1E;
   border-radius: 50%;
   transition: color 0.4s;
+  padding: 0;
 }
 .cart__cant:hover {
   border-color: rgba(235, 92, 30, 0.6784313725);
@@ -529,6 +531,7 @@ body {
   padding: 0 30px;
   border-radius: 30px;
   transition: transform 0.4s;
+  flex: 0 1 auto;
 }
 .footer-cart__btn:hover {
   transform: translate(0, -2px);

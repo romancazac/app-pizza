@@ -19,10 +19,9 @@ function Home({ itemCat, onCat, onSort, activeItem, openSort}) {
    const { items } = useSelector(({ pizzas }) => pizzas);
    const isLoading = useSelector (({ pizzas })=> pizzas.isLoading)
    const  {category, sortBy}  = useSelector(({ filters }) => filters);
-   const productCart = useSelector(({ cart }) => cart.productCart)
+
    
-   
-   dispatch(setCart([{'name':'test'},{'name':'tests'}]))
+
    
    const onSelectCategory = React.useCallback((index) => {
       onCat(index)
@@ -39,9 +38,12 @@ function Home({ itemCat, onCat, onSort, activeItem, openSort}) {
       
    }, [onCat, category]);
 
-   console.log(productCart)
+
    const onCart = (obj) => {
-      console.log(obj)
+      dispatch({
+         type:'SET_CART',
+         payload:obj
+      });
    }
    return (
       <section className="products">
@@ -59,7 +61,7 @@ function Home({ itemCat, onCat, onSort, activeItem, openSort}) {
                />
             </div>
             <div className="products__product product">
-               <h1 className="product__title">Все пиццы {productCart}</h1>
+               <h1 className="product__title">Все пиццы </h1>
                <div className="product__row">
                   {
                      isLoading ? 

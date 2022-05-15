@@ -4,18 +4,23 @@ import classNames from 'classnames'
 
 export const Product = ({ id,name, price, onCart, imageUrl, sizes, types }) => {
 
+  
+
+   const productTypes = ["тонкое", "традиционное"]
+   const productSize = [26, 30, 40]
+
    const [activeTypes, setActiveTypes] = useState(types[0]);
    const [activeSize, setActiveSize] = useState(sizes[0])
-   let productTypes = ["тонкое", "традиционное"]
-   let productSize = [26, 30, 40]
+
    const onAddCart = () => {
       const obj = {
          id,
          name,
          price,
          imageUrl,
-         size:productTypes[activeSize],
-         type:productSize[activeTypes]
+         type:types[activeTypes],
+         size:activeSize,
+         
          
       }
       onCart(obj)
